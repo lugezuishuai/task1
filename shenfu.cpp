@@ -11,6 +11,7 @@ vector<vector<Point>> contours;
 int main()
 {
 	// 定义VideoCapture类video
+	double start = static_cast<double>(getTickCount());
 	VideoCapture video("../视频/2.mp4");
 	if (!video.isOpened())  //对video进行异常检测  
 	{
@@ -63,6 +64,10 @@ int main()
 		}
 		contours.clear();
 	}
+	double time =  ((double)getTickCount() - start) / getTickFrequency();
+    double timeperframe = time/frameCount;
+    cout<<"所用总时间为："<<time<<"秒"<<endl;
+    cout<<"每一帧所用时间为："<<timeperframe<<"秒"<<endl;
 	return 0;
 }
 Mat MoveDetect(Mat temp, Mat frame)
